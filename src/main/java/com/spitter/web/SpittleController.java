@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/spitters")
 public class SpittleController {
 
     private SpittleRepository spittleRepository;
+    private static final String MAX_LONG_AS_STRING = Long.toString(Long.MAX_VALUE);
 
     // injecting spittleRepository object
     @Autowired
@@ -31,6 +33,24 @@ public class SpittleController {
 
         // the view name called "spittles" is returned
         return "spittles";
+    }
 
+    // this one is the same as the above but with query parameters
+    public String spittlesWithQueryParams(Model model,
+                                          @RequestParam("max") long max,
+                                          @RequestParam("count") int count){
+
+        model.addAttribute(spittleRepository.findSpittles(max, count));
+        return "spittles";
+    }
+
+    // same as the above method but with default values
+    public String spittlesWithQueryParamsAndDefaultValues(
+            Model model,
+            @RequestParam(value = "max", defaultValue = "10987") long max,
+            @RequestParam(value = "count", defaultValue = "20") int count){
+
+        model.addAttribute(spittleRepository.findSpittles(max, count));
+        return "spittles";
     }
 }
