@@ -23,10 +23,10 @@ public class SpittleController {
     public String spittles(Model model){
         // adding the first 20 spittles to the model object for rendering in the view
         //   model object is the Spring's way of representing maps
-        // if we dont supply the attribute name, then spring generates one based on the
+        // if we don't supply the attribute name, then spring generates one based on the
         //   requestMapping path parameter
         model.addAttribute(
-                "spittleList",
+                "spittles",
                 spittleRepository.findSpittles(Long.MAX_VALUE, 20));
 
         // the view name called "spittles" is returned
