@@ -7,17 +7,17 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 
     // loads the application context with beans defined in RootConfig class
     // basically, the core level beans
-    protected Class<?>[] getRootConfigClasses() {
+    public Class<?>[] getRootConfigClasses() {
         return new Class[] {RootConfig.class};
     }
 
     // loads the application context with beans defined in WebConfig class
     // basically, the web related beans
-    protected Class<?>[] getServletConfigClasses() {
+    public Class<?>[] getServletConfigClasses() {
         return new Class[] {WebConfig.class};
     }
 
-    protected String[] getServletMappings() {
+    public String[] getServletMappings() {
         return new String[] {"/"} ;
     }
 }
