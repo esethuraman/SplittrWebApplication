@@ -14,4 +14,6 @@ public interface SpittleRepository {
     List<Spittle> findSpittles(long max, int count);
 
     Object findOne(long spittleId);
+
+    Spitter findByUserName(String userName);
 }

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 
 // the EnableWebMVC annotation activates the MVC mode
@@ -18,11 +19,17 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public ViewResolver viewResolver(){
+
+        // InternalResourceViewResolver is meant for jsp view rendering
         InternalResourceViewResolver resourceViewResolver = new InternalResourceViewResolver();
 
-        resourceViewResolver.setPrefix("/WEB-INF/views");
+        resourceViewResolver.setPrefix("/WEB-INF/views/");
         resourceViewResolver.setSuffix(".jsp");
         resourceViewResolver.setExposeContextBeansAsAttributes(true);
+
+        // if JSTL (java standard library tags list) are to be used for resolving,
+//        resourceViewResolver.setViewClass(JstlView.class);
+
         return resourceViewResolver;
     }
 
