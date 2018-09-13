@@ -12,4 +12,6 @@ public interface SpittleRepository {
              count - number of spittle objects to be returned
      */
     List<Spittle> findSpittles(long max, int count);
+
+    Object findOne(long spittleId);
 }
